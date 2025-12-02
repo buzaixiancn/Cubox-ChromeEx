@@ -70,3 +70,26 @@ export interface APIError {
   code?: number;
 }
 
+/**
+ * 本地内容提取结果
+ * 与 TavilyExtractResult 格式兼容，便于统一处理
+ */
+export interface LocalExtractResult {
+  /** 页面 URL */
+  url: string;
+  /** 提取的文本内容 */
+  rawContent: string;
+  /** 页面标题 */
+  title?: string;
+  /** 图片 URL 数组（用于快照） */
+  images?: string[];
+  /** Favicon URL */
+  favicon?: string;
+}
+
+/**
+ * 统一的内容提取结果类型
+ * 可以是 Tavily 或本地提取的结果
+ */
+export type ExtractResult = LocalExtractResult;
+

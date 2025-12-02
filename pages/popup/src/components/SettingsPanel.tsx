@@ -14,11 +14,12 @@ export interface ConfigType {
   cuboxApiUrl: string;
   keyboardShortcut: string;
   autoAnalyze: boolean;
+  enableTavily: boolean;
 }
 
 interface SettingsPanelProps {
   config: ConfigType;
-  onConfigChange: (key: keyof ConfigType, value: string) => void;
+  onConfigChange: (key: keyof ConfigType, value: string | boolean) => void;
   onSave: () => void;
   onClose: () => void;
   saved: boolean;
@@ -104,17 +105,47 @@ export const SettingsPanel = ({
             <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
               Tavily 配置
             </h3>
-            <div>
-              <label className="mb-1.5 block text-xs font-medium text-gray-700 dark:text-gray-300">
-                Tavily API Key
-              </label>
-              <input
-                type="password"
-                value={config.tavilyApiKey}
-                onChange={e => onConfigChange('tavilyApiKey', e.target.value)}
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:border-blue-400"
-                placeholder="tvly-..."
-              />
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300">
+                    启用 Tavily API
+                  </label>
+                  <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                    启用后将使用 Tavily API 提取网页内容，关闭则使用本地方式
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => onConfigChange('enableTavily', !config.enableTavily)}
+                  className={cn(
+                    'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+                    config.enableTavily
+                      ? 'bg-blue-500'
+                      : 'bg-gray-200 dark:bg-gray-700',
+                  )}>
+                  <span
+                    className={cn(
+                      'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+                      config.enableTavily ? 'translate-x-5' : 'translate-x-0',
+                    )}
+                  />
+                </button>
+              </div>
+              {config.enableTavily && (
+                <div>
+                  <label className="mb-1.5 block text-xs font-medium text-gray-700 dark:text-gray-300">
+                    Tavily API Key
+                  </label>
+                  <input
+                    type="password"
+                    value={config.tavilyApiKey}
+                    onChange={e => onConfigChange('tavilyApiKey', e.target.value)}
+                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:border-blue-400"
+                    placeholder="tvly-..."
+                  />
+                </div>
+              )}
             </div>
           </section>
 
@@ -166,6 +197,32 @@ export const SettingsPanel = ({
               功能开关
             </h3>
             <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300">
+                    启用 Tavily API
+                  </label>
+                  <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
+                    启用后将使用 Tavily API 提取网页内容，关闭则使用本地方式
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => onConfigChange('enableTavily', !config.enableTavily)}
+                  className={cn(
+                    'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+                    config.enableTavily
+                      ? 'bg-blue-500'
+                      : 'bg-gray-200 dark:bg-gray-700',
+                  )}>
+                  <span
+                    className={cn(
+                      'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+                      config.enableTavily ? 'translate-x-5' : 'translate-x-0',
+                    )}
+                  />
+                </button>
+              </div>
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <label className="block text-xs font-medium text-gray-700 dark:text-gray-300">

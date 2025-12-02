@@ -10,6 +10,7 @@ import {
   analyzeUrlWithOpenAI,
   saveToCubox,
   extractUrlContent,
+  extractUrlContentLocal,
   withErrorBoundary,
   withSuspense,
 } from '@extension/shared';
@@ -38,6 +39,7 @@ const Popup = () => {
     cuboxApiUrl: '',
     keyboardShortcut: 'Ctrl+Shift+S',
     autoAnalyze: false,
+    enableTavily: true, // 默认启用 Tavily，保持向后兼容
   });
 
   /**
@@ -211,7 +213,7 @@ const Popup = () => {
   /**
    * 处理配置变更
    */
-  const handleConfigChange = (key: keyof ConfigType, value: string) => {
+  const handleConfigChange = (key: keyof ConfigType, value: string | boolean) => {
     setConfig(prev => ({ ...prev, [key]: value }));
   };
 
@@ -237,14 +239,7 @@ const Popup = () => {
       return;
     }
 
-    // 检查配置
-    if (!config.tavilyApiKey) {
-      setStatus('error');
-      setMessage('请先配置 Tavily API Key');
-      setShowSettings(true);
-      return;
-    }
-
+    // 检查 OpenAI 配置（两种方式都需要）
     if (!config.openaiApiKey) {
       setStatus('error');
       setMessage('请先配置 OpenAI API Key');
@@ -252,16 +247,58 @@ const Popup = () => {
       return;
     }
 
+    // 根据开关选择提取方式
+    const useTavily = config.enableTavily;
+
+    // 如果使用 Tavily，检查 API Key
+    if (useTavily && !config.tavilyApiKey) {
+      setStatus('error');
+      setMessage('请先配置 Tavily API Key');
+      setShowSettings(true);
+      return;
+    }
+
     setStatus('loading');
-    setMessage('正在使用 Tavily 提取网页内容...');
+    setMessage(
+      useTavily
+        ? '正在使用 Tavily 提取网页内容...'
+        : '正在使用本地方式提取网页内容...',
+    );
 
     try {
-      // 步骤1: 使用 Tavily 提取网页内容
-      const extractResult = await extractUrlContent(currentUrl, config.tavilyApiKey);
+      let extractResult;
+
+      // 步骤1: 根据开关选择提取方式
+      if (useTavily) {
+        // 使用 Tavily API 提取
+        extractResult = await extractUrlContent(currentUrl, config.tavilyApiKey);
+      } else {
+        // 使用本地方式提取
+        // 获取当前标签页 ID
+        let tabId: number | undefined;
+        try {
+          const [activeTab] = await chrome.tabs.query({
+            active: true,
+            currentWindow: true,
+          });
+          if (activeTab?.id) {
+            tabId = activeTab.id;
+          }
+        } catch (error) {
+          console.warn('获取标签页 ID 失败，尝试使用 URL:', error);
+        }
+
+        extractResult = await extractUrlContentLocal(currentUrl, tabId);
+      }
+
       const content = extractResult.rawContent || '';
 
       if (!content || content.trim().length === 0) {
-        throw new Error('Tavily 未能提取到网页内容，请检查 URL 是否可访问');
+        throw new Error(
+          useTavily
+            ? 'Tavily 未能提取到网页内容，请检查 URL 是否可访问'
+            : '本地提取未能获取到网页内容，可能是页面结构特殊或需要登录访问',
+        );
       }
 
       // 保存提取的图片（用于 Cubox 快照）
