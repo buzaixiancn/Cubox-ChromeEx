@@ -23,7 +23,11 @@
     "postinstall": "pnpm ready"
   },
   "devDependencies": {
-    "@extension/tsconfig": "workspace:*",
-    "@extension/shared": "workspace:*"
+    "@extension/shared": "workspace:*",
+    "@extension/tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "@types/chrome": "^0.0.323",
+    "@types/node": "^22.18.1"
   }
 }

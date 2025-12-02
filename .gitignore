@@ -23,3 +23,8 @@ tsconfig.tsbuildinfo
 
 # compiled
 **/tailwind-output.css
+
+# test files
+test-*.js
+test-*.mjs
+check-*.mjs

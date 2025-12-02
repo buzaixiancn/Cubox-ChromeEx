@@ -1,275 +1,343 @@
 <div align="center">
 
-<picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/99cb6303-64e4-4bed-bf3f-35735353e6de" />
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/a5dbf71c-c509-4c4f-80f4-be88a1943b0a" />
-    <img alt="Logo" src="https://github.com/user-attachments/assets/99cb6303-64e4-4bed-bf3f-35735353e6de" />
-</picture>
+# Cubox 智能收藏 - Chrome 扩展
 
 ![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![](https://badges.aleen42.com/src/vitejs.svg)
+![](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![](https://img.shields.io/badge/Chrome_Extension-4285F4?style=flat-square&logo=google-chrome&logoColor=white)
 
-![GitHub action badge](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/actions/workflows/build-zip.yml/badge.svg)
-![GitHub action badge](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/actions/workflows/lint.yml/badge.svg)
+> 🤖 使用 AI 智能分析网页内容，自动生成标题、描述和标签，一键收藏到 Cubox
 
-<a href="https://discord.gg/4ERQ6jgV9a" target="_blank"><img src="https://discord.com/api/guilds/1263404974830915637/widget.png"/></a>
-
-> This boilerplate
-> has [Legacy version](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/tree/legacy)
+[功能特性](#功能特性) • [快速开始](#快速开始) • [使用说明](#使用说明) • [开发指南](#开发指南) • [技术栈](#技术栈)
 
 </div>
 
-> [!NOTE]
-> This project is listed in the [Awesome Vite](https://github.com/vitejs/awesome-vite)
+---
 
-> [!TIP]
-> Share storage state between all pages
->
-> https://github.com/user-attachments/assets/3b8e189f-6443-490e-a455-4f9570267f8c
+## 📖 简介
 
-## Table of Contents
+**Cubox 智能收藏** 是一款强大的 Chrome 扩展，利用 OpenAI GPT 模型和 Tavily API 智能分析网页内容，自动生成高质量的中文标题、描述和标签，并一键保存到 Cubox 知识库。
 
-- [Intro](#intro)
-- [Features](#features)
-- [Structure](#structure)
-    - [ChromeExtension](#structure-chrome-extension)
-    - [Packages](#structure-packages)
-    - [Pages](#structure-pages)
-- [Installation](#installation)
-    - [Chrome](#installation-chrome)
-    - [Firefox](#installation-firefox)
-- [Install dependency](#install-dependency)
-    - [For root](#install-dependency-for-root)
-    - [For module](#install-dependency-for-module)
-- [Environment variables](#env-variables)
-    - [Add new](#env-variables-new)
-    - [Set via CLI](#env-variables-cli-set)
-- [Troubleshooting](#troubleshooting)
-    - [Hot module reload seems to have frozen](#hot-module-reload-seems-to-have-frozen)
-    - [Imports not resolving correctly](#imports-not-resolving-correctly)
-- [Community](#community)
-- [Debugging](#debugging)
-- [Reference](#reference)
-- [Star History](#star-history)
-- [Contributors](#contributors)
+### ✨ 核心能力
 
-## Intro
+- 🧠 **AI 智能分析**：使用 OpenAI GPT 模型深度理解网页内容
+- 📄 **内容提取**：集成 Tavily API，精准提取网页文本和图片
+- 🏷️ **智能标签**：自动生成 8-15 个精准标签，便于分类检索
+- 🎯 **平台识别**：自动识别网站平台（GitHub、哔哩哔哩、稀土掘金等）并在标题和标签中标注
+- ✏️ **预览编辑**：AI 分析后可在保存前预览和修改内容
+- ⌨️ **快捷键支持**：默认 `Ctrl+Shift+S`（Mac: `Cmd+Shift+S`）快速打开
+- ⚡ **快速分析**：支持打开扩展时自动开始分析
 
-This boilerplate helps you create Chrome/Firefox extensions using React and Typescript. It improves
-the build speed and development experience by using Vite and Turborepo.
+## 🚀 功能特性
 
-## Features
+### 核心功能
 
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwindcss](https://tailwindcss.com/)
-- [Vite](https://vitejs.dev/) with [Rollup](https://rollupjs.org/)
-- [Turborepo](https://turbo.build/repo)
-- [Prettier](https://prettier.io/)
-- [ESLint](https://eslint.org/)
-- [Chrome Extensions Manifest Version 3](https://developer.chrome.com/docs/extensions/mv3/intro/)
-- [Custom i18n package](/packages/i18n/)
-- [Custom HMR (Hot Module Rebuild) plugin](/packages/hmr)
-- [End-to-end testing with WebdriverIO](https://webdriver.io/)
+- ✅ **智能内容分析**
+  - 使用 Tavily API 提取网页完整内容
+  - OpenAI GPT 模型分析并生成结构化信息
+  - 支持多种内容类型：文章、视频、代码仓库、博客等
 
-## Installation
+- ✅ **智能标题生成**
+  - 自动识别内容类型和平台
+  - 代码仓库自动包含项目名称
+  - 平台名称自动标注在标题末尾
 
-1. Clone this repository.( ```git clone https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite``` )
-2. Ensure your node version is >= than in `.nvmrc` file, recommend to use [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#intro)
-3. Edit `/packages/i18n/locales/`{your locale(s)}/`messages.json`
-4. In the objects `extensionDescription` and `extensionName`, change the `message` fields (leave `description` alone)
-5. Install pnpm globally: `npm install -g pnpm`
-6. Run `pnpm install`
-7. Check if you have that configuration in your IDE/Editor:
-    - <b>VS Code</b>:
-        - Installed [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-        - Installed [Prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-        - Enabled `Typescript Workbench version` in settings:
-            - CTRL + SHIFT + P -> Search: `Typescript: Select Typescript version...` -> `Use Workbench version`
-            - [Read more](https://code.visualstudio.com/docs/languages/typescript#_using-newer-typescript-versions)
-        - Optional, for imports to work correctly in WSL, you might need to install the [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) extension and connect to WSL remotely from VS Code. See overview section in the extension page for more information.
-    - <b>WebStorm</b>:
-      - Configured [ESLint](https://www.jetbrains.com/help/webstorm/eslint.html#ws_eslint_configure_run_eslint_on_save)
-      - Configured [Prettier](https://prettier.io/docs/en/webstorm.html)
-      - Optional, but useful `File | Settings | Tools | Actions on Save`\
-      -> `Optimize imports` and `Reformat code`
-8. Run `pnpm update-version <version>` for change the `version` to the desired version of your extension.
+- ✅ **详细描述生成**
+  - 包含核心功能、技术栈、适用场景等关键信息
+  - 去除冗余表述，直接描述内容本身
+  - 80-150 字精炼描述
 
-> [!IMPORTANT]
-> On Windows, make sure you have WSL enabled and Linux distribution (e.g. Ubuntu) installed on WSL.
-> 
-> [Installation Guide](https://learn.microsoft.com/en-us/windows/wsl/install)
+- ✅ **智能标签系统**
+  - 8-15 个精准标签
+  - 自动包含平台名称、技术栈、内容类型
+  - 支持手动添加和删除标签
 
-<b>Then, depending on the target browser:</b>
+- ✅ **预览和编辑**
+  - 分析完成后可预览所有生成内容
+  - 支持修改标题、描述和标签
+  - 确认无误后一键保存
 
-### For Chrome: <a name="installation-chrome"></a>
+- ✅ **一键收藏**
+  - 自动保存到 Cubox 知识库
+  - 包含网页快照/图片
+  - 保存成功后自动关闭扩展
 
-1. Run:
-    - Dev: `pnpm dev` (on Windows, you should run as administrator;
-      see [issue#456](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/456))
-    - Prod: `pnpm build`
-2. Open in browser - `chrome://extensions`
-3. Check - <kbd>Developer mode</kbd>
-4. Click - <kbd>Load unpacked</kbd> in the upper left corner
-5. Select the `dist` directory from the boilerplate project
+### 用户体验
 
-### For Firefox: <a name="installation-firefox"></a>
+- 🎨 **现代化 UI**：采用 Tailwind CSS，支持深色模式
+- 📱 **自适应高度**：popup 窗口自动适应内容高度，无需滚动
+- ⚙️ **集成设置**：设置面板集成在 popup 内，无需跳转
+- 💾 **配置持久化**：所有配置保存在本地，刷新后不丢失
 
-1. Run:
-    - Dev: `pnpm dev:firefox`
-    - Prod: `pnpm build:firefox`
-2. Open in browser - `about:debugging#/runtime/this-firefox`
-3. Click - <kbd>Load Temporary Add-on...</kbd> in the upper right corner
-4. Select the `./dist/manifest.json` file from the boilerplate project
+## 🛠️ 技术栈
 
-> [!NOTE]
-> In Firefox, you load add-ons in temporary mode. That means they'll disappear after each browser close. You have to
-> load the add-on on every browser launch.
+- **框架**: React 19 + TypeScript
+- **构建工具**: Vite + Turborepo
+- **样式**: Tailwind CSS
+- **状态管理**: React Hooks
+- **API 集成**:
+  - OpenAI API (GPT-3.5/GPT-4/GPT-4-turbo/GPT-4o-mini)
+  - Tavily API (网页内容提取)
+  - Cubox API (收藏保存)
+- **扩展架构**: Chrome Extension Manifest V3
 
-## Install dependency for turborepo: <a name="install-dependency"></a>
+## 📦 快速开始
 
-### For root: <a name="install-dependency-for-root"></a>
+### 环境要求
 
-1. Run `pnpm i <package> -w`
+- Node.js >= 22.15.1
+- pnpm >= 10.11.0
 
-### For module: <a name="install-dependency-for-module"></a>
+### 安装步骤
 
-1. Run `pnpm i <package> -F <module name>`
+1. **克隆项目**
 
-`package` - Name of the package you want to install e.g. `nodemon` \
-`module-name` - You can find it inside each `package.json` under the key `name`, e.g. `@extension/content-script`, you
-can use only `content-script` without `@extension/` prefix
+```bash
+git clone https://github.com/buzaixiancn/Cubox-ChromeEx.git
+cd Cubox-ChromeEx
+```
 
-## How do I disable modules I'm not using?
+2. **安装依赖**
 
-[Read here](packages/module-manager/README.md)
+```bash
+pnpm install
+```
 
-## Environment variables
+3. **配置环境变量**
 
-Read: [Env Documentation](packages/env/README.md)
+创建 `.env` 文件（可选，也可在扩展设置中配置）：
 
-## Boilerplate structure <a name="structure"></a>
+```env
+VITE_OPENAI_API_KEY=sk-your-openai-api-key
+VITE_OPENAI_API_ENDPOINT=https://api.chatanywhere.tech
+VITE_TAVILY_API_KEY=tvly-your-tavily-api-key
+VITE_CUBOX_API_URL=https://cubox.pro/c/api/save/your-api-key
+```
 
-### Chrome extension <a name="structure-chrome-extension"></a>
+4. **构建扩展**
 
-The extension lives in the `chrome-extension` directory and includes the following files:
+```bash
+# 开发模式（自动热重载）
+pnpm dev
 
-- [`manifest.ts`](chrome-extension/manifest.ts) - script that outputs the `manifest.json`
-- [`src/background`](chrome-extension/src/background) - [background script](https://developer.chrome.com/docs/extensions/mv3/background_pages/)
-  (`background.service_worker` in manifest.json)
-- [`public`](chrome-extension/public/) - icons referenced in the manifest; content CSS for user's page injection
+# 生产构建
+pnpm build
+```
 
-> [!IMPORTANT]
-> To facilitate development, the boilerplate is configured to "Read and change all your data on all websites".
-> In production, it's best practice to limit the premissions to only the strictly necessary websites. See
-> [Declaring permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions)
-> and edit `manifest.js` accordingly.
+5. **加载扩展到 Chrome**
 
-### Pages <a name="structure-pages"></a>
+- 打开 Chrome 浏览器，访问 `chrome://extensions/`
+- 开启右上角的 **开发者模式**
+- 点击 **加载已解压的扩展程序**
+- 选择项目的 `dist` 目录
 
-Code that is transpiled to be part of the extension lives in the [pages](pages) directory.
+6. **配置 API 密钥**
 
-- [`content`](pages/content) - Scripts injected into specified pages (You can see it in console)
-- [`content-ui`](pages/content-ui) - React Components injected into specified pages (You can see it at the very bottom of pages)
-- [`content-runtime`](pages/content-runtime/src/) - [injected content scripts](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts#functionality)
-  This can be injected from e.g. `popup` like standard `content`
-- [`devtools`](pages/devtools/) - [extend the browser DevTools](https://developer.chrome.com/docs/extensions/how-to/devtools/extend-devtools#creating)
-  (`devtools_page` in manifest.json)
-- [`devtools-panel`](pages/devtools-panel/) - [DevTools panel](https://developer.chrome.com/docs/extensions/reference/api/devtools/panels)
-  for [devtools](pages/devtools/src/index.ts)
-- [`new-tab`](pages/new-tab/) - [override the default New Tab page](https://developer.chrome.com/docs/extensions/develop/ui/override-chrome-pages)
-  (`chrome_url_overrides.newtab` in manifest.json)
-- [`options`](pages/options/) - [options page](https://developer.chrome.com/docs/extensions/develop/ui/options-page)
-  (`options_page` in manifest.json)
-- [`popup`](pages/popup/) - [popup](https://developer.chrome.com/docs/extensions/reference/api/action#popup) shown when
-  clicking the extension in the toolbar
-  (`action.default_popup` in manifest.json)
-- [`side-panel`](pages/side-panel/) - [sidepanel (Chrome 114+)](https://developer.chrome.com/docs/extensions/reference/api/sidePanel)
-  (`side_panel.default_path` in manifest.json)
+- 点击浏览器工具栏中的扩展图标
+- 点击右上角的设置图标 ⚙️
+- 填写以下配置：
+  - **OpenAI API Key**: 你的 OpenAI API 密钥
+  - **API 端点**: OpenAI API 端点（默认：`https://api.chatanywhere.tech`）
+  - **模型名称**: 选择要使用的模型（gpt-3.5-turbo / gpt-4 / gpt-4-turbo / gpt-4o-mini）
+  - **Tavily API Key**: 你的 Tavily API 密钥
+  - **Cubox API URL**: 你的 Cubox 收藏 API URL
+- 点击 **保存设置**
 
-### Packages <a name="structure-packages"></a>
+## 📖 使用说明
 
-Some shared packages:
+### 基本使用
 
-- `dev-utils` - utilities for Chrome extension development (manifest-parser, logger)
-- `env` - exports object which contain all environment variables from `.env` and dynamically declared
-- `hmr` - custom HMR plugin for Vite, injection script for reload/refresh, HMR dev-server
-- `i18n` - custom internationalization package; provides i18n function with type safety and other validation
-- `shared` - shared code for the entire project (types, constants, custom hooks, components etc.)
-- `storage` - helpers for easier integration with [storage](https://developer.chrome.com/docs/extensions/reference/api/storage), e.g. local/session storages
-- `tailwind-config` - shared Tailwind config for entire project
-- `tsconfig` - shared tsconfig for the entire project
-- `ui` - function to merge your Tailwind config with the global one; you can save components here
-- `vite-config` - shared Vite config for the entire project
+1. **打开扩展**
+   - 点击浏览器工具栏中的扩展图标，或
+   - 使用快捷键 `Ctrl+Shift+S`（Mac: `Cmd+Shift+S`）
 
-Other useful packages:
+2. **分析网页**
+   - 在要收藏的网页上打开扩展
+   - 点击 **"分析网页内容"** 按钮
+   - 等待 AI 分析完成（通常需要 5-15 秒）
 
-- `zipper` - run `pnpm zip` to pack the `dist` folder into `extension-YYYYMMDD-HHmmss.zip` inside the newly created
-  `dist-zip`
-- `module-manager` - run `pnpm module-manager` to enable/disable modules
-- `e2e` - run `pnpm e2e` for end-to-end tests of your zipped extension on different browsers
+3. **预览和编辑**
+   - 查看 AI 生成的标题、描述和标签
+   - 可以修改任何内容
+   - 添加或删除标签
 
-## Troubleshooting
+4. **保存到 Cubox**
+   - 点击 **"确认保存到 Cubox"** 按钮
+   - 保存成功后扩展会自动关闭
 
-### Hot module reload seems to have frozen
+### 高级功能
 
-If saving source files doesn't cause the extension HMR code to trigger a reload of the browser page, try this:
+#### 快速分析
 
-1. Ctrl+C the development server and restart it (`pnpm run dev`)
-2. If you get a [`grpc` error](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/612),
-   [kill the
-   `turbo` process](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/issues/612#issuecomment-2518982339)
-   and run `pnpm dev` again.
+在设置中开启 **"快速分析"** 开关后，打开扩展时会自动开始分析当前页面，无需手动点击按钮。
 
-### Imports not resolving correctly
+#### 自定义快捷键
 
-If you are using WSL and imports are not resolving correctly, ensure that you have connected VS Code to WSL remotely using the [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) extension.
+1. 打开 Chrome 扩展管理页面：`chrome://extensions/shortcuts`
+2. 找到 **Cubox 智能收藏** 扩展
+3. 点击快捷键右侧的编辑图标
+4. 设置你喜欢的快捷键组合
 
-## Community
+#### 支持的平台识别
 
-To chat with other community members, you can join the [Discord](https://discord.gg/4ERQ6jgV9a) server.
-You can ask questions on that server, and you can also help others.
+扩展会自动识别以下平台并在标题和标签中标注：
 
-Also, suggest new features or share any challenges you've faced while developing Chrome extensions!
+- **代码平台**: GitHub, GitLab, Gitee
+- **视频平台**: 哔哩哔哩, YouTube
+- **技术社区**: 稀土掘金, 知乎, CSDN, 思否
+- **社交媒体**: 微博, 抖音, 小红书
 
-## Debugging
+## 🏗️ 项目结构
 
-If you're debugging one, you can use [Brie](https://go.briehq.com/github?utm_source=CEB) lets you capture screenshots, errors, and network activity, making it easier for us to help.
+```
+Cubox-ChromeEx/
+├── chrome-extension/          # Chrome 扩展配置
+│   ├── manifest.ts           # Manifest 配置文件
+│   └── src/
+│       └── background/       # Background Service Worker
+├── pages/
+│   └── popup/                # Popup 主界面
+│       └── src/
+│           ├── Popup.tsx     # 主组件
+│           └── components/   # UI 组件
+│               ├── SettingsPanel.tsx    # 设置面板
+│               ├── PreviewPanel.tsx     # 预览面板
+│               ├── UrlCard.tsx          # URL 卡片
+│               └── ...
+├── packages/
+│   ├── shared/               # 共享代码
+│   │   └── lib/
+│   │       └── api/
+│   │           ├── openai.ts # OpenAI API 调用
+│   │           ├── tavily.ts # Tavily API 调用
+│   │           └── cubox.ts  # Cubox API 调用
+│   ├── storage/              # 存储工具
+│   ├── ui/                   # UI 组件库
+│   └── ...
+└── dist/                     # 构建输出目录
+```
 
-## Reference
+## 🔧 开发指南
 
-- [Chrome Extensions](https://developer.chrome.com/docs/extensions)
-- [Vite Plugin](https://vitejs.dev/guide/api-plugin.html)
-- [Rollup](https://rollupjs.org/guide/en/)
-- [Turborepo](https://turbo.build/repo/docs)
-- [Rollup-plugin-chrome-extension](https://www.extend-chrome.dev/rollup-plugin)
+### 开发模式
 
-## Star History <a name="star-history"></a>
+```bash
+# 启动开发服务器（自动热重载）
+pnpm dev
+```
 
-<a href="https://star-history.com/#Jonghakseo/chrome-extension-boilerplate-react-vite&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Jonghakseo/chrome-extension-boilerplate-react-vite&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Jonghakseo/chrome-extension-boilerplate-react-vite&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Jonghakseo/chrome-extension-boilerplate-react-vite&type=Date" />
- </picture>
-</a>
+### 代码检查
 
-## Contributors <a name="contributors"></a>
+```bash
+# 类型检查
+pnpm type-check
 
-This Boilerplate is made possible thanks to all of its contributors.
+# 代码格式化
+pnpm format
 
-<a href="https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite/graphs/contributors">
-  <img width="500px" src="https://contrib.rocks/image?repo=Jonghakseo/chrome-extension-boilerplate-react-vite" alt="All Contributors"/>
-</a>
+# ESLint 检查
+pnpm lint
+
+# 自动修复
+pnpm lint:fix
+```
+
+### 构建生产版本
+
+```bash
+# 构建扩展
+pnpm build
+
+# 打包为 zip 文件
+pnpm zip
+```
+
+### 添加依赖
+
+```bash
+# 添加到根目录
+pnpm add <package> -w
+
+# 添加到指定模块
+pnpm add <package> -F <module-name>
+```
+
+## 📝 API 配置说明
+
+### OpenAI API
+
+1. 获取 API Key: https://platform.openai.com/api-keys
+2. 支持的模型：
+   - `gpt-3.5-turbo` - 快速且经济
+   - `gpt-4` - 更强的理解能力
+   - `gpt-4-turbo` - 最新增强版
+   - `gpt-4o-mini` - 平衡性能和成本
+
+### Tavily API
+
+1. 获取 API Key: https://docs.tavily.com/
+2. 用于提取网页的完整文本内容和图片
+
+### Cubox API
+
+1. 获取 API URL: https://help.cubox.pro/save/89d3/
+2. API URL 格式: `https://cubox.pro/c/api/save/{your-api-key}`
+
+## 🐛 故障排除
+
+### 扩展无法加载
+
+- 确保项目路径中没有中文字符（Chrome 扩展限制）
+- 检查 `dist` 目录是否存在且包含 `manifest.json`
+- 查看 Chrome 扩展管理页面的错误信息
+
+### API 调用失败
+
+- 检查 API 密钥是否正确配置
+- 确认网络连接正常
+- 查看浏览器控制台（F12）的错误信息
+
+### 内容提取失败
+
+- Tavily API 可能无法访问某些需要登录的网页
+- 某些动态加载的内容可能无法提取
+- 检查 Tavily API Key 是否有效
+
+### Popup 高度问题
+
+- 确保浏览器窗口足够高
+- 尝试关闭并重新打开扩展
+- 检查是否有 CSS 样式冲突
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📄 许可证
+
+本项目基于原脚手架 [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) 开发，采用 MIT 许可证。
+
+## 🙏 致谢
+
+- [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) - 优秀的 Chrome 扩展开发脚手架
+- [OpenAI](https://openai.com/) - 强大的 AI 模型
+- [Tavily](https://tavily.com/) - 网页内容提取服务
+- [Cubox](https://cubox.pro/) - 知识管理工具
+
+## 📧 联系方式
+
+如有问题或建议，欢迎通过以下方式联系：
+
+- GitHub Issues: [提交 Issue](https://github.com/buzaixiancn/Cubox-ChromeEx/issues)
+- Email: 183518831@qq.com
 
 ---
 
-## Special Thanks To
+<div align="center">
 
-| <a href="https://jb.gg/OpenSourceSupport"><img width="40" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo."></a> | <a href="https://www.linkedin.com/in/j-acks0n"><img width="40" style="border-radius:50%" src='https://avatars.githubusercontent.com/u/23139754' alt='Jackson Hong'/></a> |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+**⭐ 如果这个项目对你有帮助，请给个 Star！**
 
----
+Made with ❤️ by [buzaixian](https://github.com/buzaixiancn)
 
-Made by [Jonghakseo](https://jonghakseo.github.io/)
+</div>

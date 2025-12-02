@@ -31,7 +31,7 @@ const manifest = {
   version: packageJson.version,
   description: '__MSG_extensionDescription__',
   host_permissions: ['<all_urls>'],
-  permissions: ['storage', 'scripting', 'tabs', 'notifications', 'sidePanel'],
+  permissions: ['storage', 'scripting', 'tabs', 'notifications', 'activeTab'],
   options_page: 'options/index.html',
   background: {
     service_worker: 'background.js',
@@ -40,6 +40,15 @@ const manifest = {
   action: {
     default_popup: 'popup/index.html',
     default_icon: 'icon-34.png',
+  },
+  commands: {
+    'open-popup': {
+      suggested_key: {
+        default: 'Ctrl+Shift+S',
+        mac: 'Command+Shift+S',
+      },
+      description: '打开 Cubox 智能收藏扩展',
+    },
   },
   chrome_url_overrides: {
     newtab: 'new-tab/index.html',
@@ -76,9 +85,6 @@ const manifest = {
       matches: ['*://*/*'],
     },
   ],
-  side_panel: {
-    default_path: 'side-panel/index.html',
-  },
 } satisfies ManifestType;
 
 export default manifest;

@@ -1,6 +1,27 @@
 @import '@extension/ui/global.css';
 
+html {
+  width: 420px;
+  margin: 0;
+  padding: 0;
+  height: auto;
+}
+
 body {
-  width: 300px;
-  height: 260px;
+  width: 420px;
+  margin: 0;
+  padding: 0;
+  height: auto;
+  background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1f2937;
+  }
+}
+
+#app-container {
+  width: 100%;
+  height: auto;
 }
