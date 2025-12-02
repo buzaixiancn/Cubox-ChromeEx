@@ -3,7 +3,6 @@
  * 集成在 Popup 内的设置界面
  */
 
-import { useState } from 'react';
 import { cn } from '@extension/ui';
 
 export interface ConfigType {

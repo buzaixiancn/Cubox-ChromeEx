@@ -33,11 +33,11 @@ export const UrlCard = ({ url, className }: UrlCardProps) => {
           />
         </svg>
         {/* 当前页面标签 */}
-        <label className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 flex-shrink-0">
+        <span className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 flex-shrink-0">
           当前页面
-        </label>
+        </span>
         {/* URL 在右边，单行显示，可以水平滚动查看完整内容 */}
-        <div className="flex-1 min-w-0 overflow-x-auto scrollbar-hide">
+        <div className="flex-1 min-w-0 overflow-x-auto scrollbar-hide overflow-y-hidden">
           <p
             className="text-sm text-gray-900 dark:text-gray-100 whitespace-nowrap"
             title={url}>

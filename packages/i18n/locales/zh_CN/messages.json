@@ -1,0 +1,46 @@
+{
+  "extensionDescription": {
+    "description": "扩展描述",
+    "message": "使用 AI 智能分析网页内容，自动生成标题、描述和标签，一键收藏到 Cubox 知识库。支持 Tavily API 和本地内容提取两种方式，快速、准确、高效。"
+  },
+  "extensionName": {
+    "description": "扩展名称",
+    "message": "Cubox 智能收藏"
+  },
+  "toggleTheme": {
+    "message": "切换主题"
+  },
+  "injectButton": {
+    "message": "点击注入内容脚本"
+  },
+  "greeting": {
+    "description": "问候消息",
+    "message": "你好，我的名字是 $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "张三"
+      }
+    }
+  },
+  "hello": {
+    "description": "占位符示例",
+    "message": "你好 $1"
+  },
+  "displayErrorInfo": {
+    "message": "发生错误"
+  },
+  "displayErrorDescription": {
+    "message": "抱歉，加载页面时出现了问题。"
+  },
+  "displayErrorDetailsInfo": {
+    "message": "错误详情："
+  },
+  "displayErrorUnknownErrorInfo": {
+    "message": "未知错误"
+  },
+  "displayErrorReset": {
+    "message": "重新运行"
+  }
+}
+

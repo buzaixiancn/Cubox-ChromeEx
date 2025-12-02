@@ -20,7 +20,7 @@ const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
  */
 const manifest = {
   manifest_version: 3,
-  default_locale: 'en',
+  default_locale: 'zh_CN',
   name: '__MSG_extensionName__',
   browser_specific_settings: {
     gecko: {
@@ -49,9 +49,6 @@ const manifest = {
       },
       description: '打开 Cubox 智能收藏扩展',
     },
-  },
-  chrome_url_overrides: {
-    newtab: 'new-tab/index.html',
   },
   icons: {
     '128': 'icon-128.png',

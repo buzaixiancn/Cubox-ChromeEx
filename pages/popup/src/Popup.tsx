@@ -18,7 +18,7 @@ import { configStorage } from '@extension/storage';
 import { cn, LoadingSpinner, ErrorDisplay } from '@extension/ui';
 import { UrlCard } from '@src/components/UrlCard';
 import { IconButton } from '@src/components/IconButton';
-import { StatusMessage, type StatusType } from '@src/components/StatusMessage';
+import type { StatusType } from '@src/components/StatusMessage';
 import { SettingsPanel, type ConfigType } from '@src/components/SettingsPanel';
 import { PreviewPanel, type AnalysisResult } from '@src/components/PreviewPanel';
 

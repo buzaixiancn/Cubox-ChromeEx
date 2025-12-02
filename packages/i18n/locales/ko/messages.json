@@ -1,11 +1,11 @@
 {
   "extensionDescription": {
     "description": "Extension description",
-    "message": "React, Typescript, Vite를 사용한 크롬 익스텐션 보일러플레이트입니다."
+    "message": "AI로 웹페이지 내용을 지능적으로 분석하고 중국어 제목, 설명, 태그를 자동 생성한 후 한 번의 클릭으로 Cubox 지식베이스에 저장하는 Chrome 확장 프로그램. Tavily API와 로컬 콘텐츠 추출 방식을 지원합니다."
   },
   "extensionName": {
     "description": "Extension name",
-    "message": "크롬 익스텐션 보일러플레이트"
+    "message": "Cubox 스마트 컬렉션"
   },
   "toggleTheme": {
     "message": "테마 변경"

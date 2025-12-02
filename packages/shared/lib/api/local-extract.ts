@@ -9,7 +9,7 @@ import type { LocalExtractResult } from '../types/api.js';
  * 注入到页面的内容提取脚本
  * 这个脚本会在目标页面的上下文中执行，可以访问完整的 DOM
  */
-const EXTRACT_CONTENT_SCRIPT = () => {
+const EXTRACT_CONTENT_SCRIPT = function() {
   // 提取页面标题
   const title = document.title || '';
 
@@ -57,7 +57,7 @@ const EXTRACT_CONTENT_SCRIPT = () => {
     });
 
     // 获取文本内容
-    const text = clone.textContent || clone.innerText || '';
+    const text = clone.textContent || '';
     
     // 清理多余的空白字符
     return text
@@ -129,10 +129,10 @@ const EXTRACT_CONTENT_SCRIPT = () => {
  * @param tabId - 目标标签页 ID（可选，如果不提供则使用当前活动标签页）
  * @returns Promise<LocalExtractResult> 提取结果
  */
-export async function extractUrlContentLocal(
+export const extractUrlContentLocal = async (
   url: string,
   tabId?: number
-): Promise<LocalExtractResult> {
+): Promise<LocalExtractResult> => {
   // 检查 Chrome Extension API 是否可用
   if (typeof chrome === 'undefined' || !chrome.scripting) {
     throw new Error('Chrome Extension API 不可用');

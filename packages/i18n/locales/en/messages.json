@@ -1,11 +1,11 @@
 {
   "extensionDescription": {
     "description": "Extension description",
-    "message": "Chrome extension boilerplate developed with Vite, React and Typescript"
+    "message": "AI-powered Chrome extension that intelligently analyzes webpage content, automatically generates Chinese titles, descriptions, and tags, then saves to Cubox knowledge base with one click. Supports both Tavily API and local content extraction for fast, accurate, and efficient bookmarking."
   },
   "extensionName": {
     "description": "Extension name",
-    "message": "Chrome extension boilerplate"
+    "message": "Cubox Smart Collection"
   },
   "toggleTheme": {
     "message": "Toggle theme"
