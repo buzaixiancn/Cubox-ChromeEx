@@ -1,11 +1,19 @@
+import { IS_DEV } from '@extension/env';
 import { t } from '@extension/i18n';
 import { ToggleButton } from '@extension/ui';
 import { useEffect } from 'react';
 
 export default function App() {
   useEffect(() => {
-    console.log('[CEB] Content ui example loaded');
+    if (IS_DEV) {
+      console.log('[CEB] Content ui example loaded');
+    }
   }, []);
+
+  // 生产环境中不显示任何 UI（这是开发时的示例组件）
+  if (!IS_DEV) {
+    return null;
+  }
 
   return (
     <div className="flex items-center justify-between gap-2 rounded bg-blue-100 px-2 py-1">
