@@ -28,3 +28,7 @@ tsconfig.tsbuildinfo
 test-*.js
 test-*.mjs
 check-*.mjs
+
+# personal bookmarks and data
+docs/*.html
+docs/*_bookmarks_*.html
