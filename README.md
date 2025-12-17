@@ -324,7 +324,7 @@ pnpm add <package> -F <module-name>
 - [Tavily](https://tavily.com/) - 网页内容提取服务
 - [Cubox](https://cubox.pro/) - 知识管理工具
 
-> 本项目基于 [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) 脚手架开发
+特别感谢 [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) 项目提供的优秀开发脚手架。
 
 ## 📧 联系方式
 
