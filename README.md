@@ -331,7 +331,6 @@ pnpm add <package> -F <module-name>
 如有问题或建议，欢迎通过以下方式联系：
 
 - GitHub Issues: [提交 Issue](https://github.com/buzaixiancn/Cubox-ChromeEx/issues)
-- Email: 183518831@qq.com
 
 ---
 
