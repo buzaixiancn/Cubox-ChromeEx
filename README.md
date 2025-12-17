@@ -316,14 +316,15 @@ pnpm add <package> -F <module-name>
 
 ## 📄 许可证
 
-本项目基于原脚手架 [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) 开发，采用 MIT 许可证。
+本项目采用 MIT 许可证。
 
 ## 🙏 致谢
 
-- [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) - 优秀的 Chrome 扩展开发脚手架
 - [OpenAI](https://openai.com/) - 强大的 AI 模型
 - [Tavily](https://tavily.com/) - 网页内容提取服务
 - [Cubox](https://cubox.pro/) - 知识管理工具
+
+> 本项目基于 [chrome-extension-boilerplate-react-vite](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) 脚手架开发
 
 ## 📧 联系方式
 

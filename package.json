@@ -1,13 +1,13 @@
 {
-  "name": "chrome-extension-boilerplate-react-vite",
+  "name": "cubox-chrome-extension",
   "version": "0.5.0",
-  "description": "chrome extension boilerplate",
+  "description": "Cubox 智能收藏 Chrome 扩展 - 使用 AI 智能分析网页内容，自动生成标题、描述和标签，一键收藏到 Cubox",
   "license": "MIT",
   "private": true,
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite.git"
+    "url": "https://github.com/buzaixiancn/Cubox-ChromeEx.git"
   },
   "type": "module",
   "scripts": {
@@ -34,6 +34,7 @@
     "update-version": "bash bash-scripts/update_version.sh",
     "copy-env": "bash bash-scripts/copy_env.sh",
     "set-global-env": "bash bash-scripts/set_global_env.sh",
+    "release": "bash bash-scripts/create-release.sh",
     "module-manager": "pnpm -F module-manager start",
     "postinstall": "pnpm copy-env"
   },

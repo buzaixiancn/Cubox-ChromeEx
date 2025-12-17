@@ -4,12 +4,12 @@ This tool allows you to inject React Components into all pages specified by you.
 
 ### Add New Script
 
-1. Copy `matches/example` folder and paste it with other name and edit content.
+1. Create a new folder in `matches/` directory (e.g., `matches/my-ui`) and add your React component.
 
    > [!NOTE]
-   > Remember to edit import:
+   > Remember to import your component:
    > ```ts
-   > import App from '@src/matches/{new_folder}/App';
+   > import App from '@src/matches/{your_folder}/App';
    > ```
 
 2. Edit `manifest.ts`:

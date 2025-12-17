@@ -24,7 +24,7 @@ const manifest = {
   name: '__MSG_extensionName__',
   browser_specific_settings: {
     gecko: {
-      id: 'example@example.com',
+      id: 'cubox-smart-save@buzaixiancn',
       strict_min_version: '109.0',
     },
   },
@@ -59,16 +59,8 @@ const manifest = {
       js: ['content/all.iife.js'],
     },
     {
-      matches: ['https://example.com/*'],
-      js: ['content/example.iife.js'],
-    },
-    {
       matches: ['http://*/*', 'https://*/*', '<all_urls>'],
       js: ['content-ui/all.iife.js'],
-    },
-    {
-      matches: ['https://example.com/*'],
-      js: ['content-ui/example.iife.js'],
     },
     {
       matches: ['http://*/*', 'https://*/*', '<all_urls>'],

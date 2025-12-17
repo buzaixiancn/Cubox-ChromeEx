@@ -4,7 +4,7 @@ This tool allows users to inject scripts (Console and UI) during runtime into al
 
 ### Add New Script
 
-1. Copy `matches/example` folder and paste it with other name and edit content.
+1. Create a new folder in `matches/` directory (e.g., `matches/my-runtime`) and add your runtime script.
 2. Define somewhere(e.g in `popup`(You have declared it as default)):
 
 ```ts
